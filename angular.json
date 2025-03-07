@@ -90,7 +90,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/quill-mention/dist/quill.mention.min.css",
             ],
             "scripts": []
           }
