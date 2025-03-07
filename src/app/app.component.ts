@@ -2,7 +2,7 @@ import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 
 import { TranslatorService } from './services/translator.service';
 import { FileUploadDetails } from './models/file-upload-details.model';
@@ -78,8 +78,8 @@ export class AppComponent {
         this.translateService.downloadTranslatedPdf(this.translatedText).subscribe({
             next: (data: any) => {
                 console.log(data);
-                const blob = new Blob([data], { type: 'application/octet-stream' });
-                saveAs(blob, 'Sample file');
+                // const blob = new Blob([data], { type: 'application/octet-stream' });
+                // saveAs(blob, 'Sample file');
             }
         });
     }
