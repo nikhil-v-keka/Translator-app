@@ -25,6 +25,7 @@ export class AppComponent {
     targetLanguage: string = '';
     selectedFile: File | null = null;
     languages: any[] = [];
+    isTranslationInProgress: boolean;
 
     private translateService = inject(TranslatorService);
 
@@ -80,15 +81,18 @@ export class AppComponent {
     }
 
     translate() {
+        this.translatedText = '';
         let translateDto = new TranslateDto({});
         translateDto.language = this.targetLanguage;
         translateDto.text = this.originalText.replace(/(\r\n|\n|\r)/gm, "");;
+        this.isTranslationInProgress = true;
         this.translateService.translateText(translateDto).subscribe({
             next: (data: any) => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data.response, 'text/html');
                 this.translatedText = doc.body.innerHTML;
-            }
+            },
+            complete: () => this.isTranslationInProgress = false
         })
     }
 
